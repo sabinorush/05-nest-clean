@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "@rocketseat/eslint-config/node"
+  ],
+  "rules": {
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-useless-catch": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/adjacent-overload-signatures": "off",
+    "no-self-assign": "off",
+    "no-useless-escape": "off",
+    "accessor-pairs": "off",
+    "no-new": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "endOfLine": "auto"
+        
+      }
+    ]
+  }
+}
