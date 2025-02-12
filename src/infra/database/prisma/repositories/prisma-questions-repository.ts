@@ -40,42 +40,42 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
   async findManyRecent({ page }: PaginationParams): Promise<Question[]> {
     const questions = await this.prisma.question.findMany({
       take: 20,
-      skip: (page -1 ) * 20,
+      skip: (page - 1) * 20,
       orderBy: {
-        createdAt: 'desc'
+        createdAt: 'desc',
       },
     });
-    return questions.map(question => {
-      return PrismaQuestionMapper.toDomain(question)
-    })
+    return questions.map((question) => {
+      return PrismaQuestionMapper.toDomain(question);
+    });
   }
-  
+
   async create(question: Question): Promise<void> {
-    const data = PrismaQuestionMapper.toPrisma(question)
+    const data = PrismaQuestionMapper.toPrisma(question);
 
     await this.prisma.question.create({
       data,
-    })
+    });
   }
 
   async save(question: Question): Promise<void> {
-    const data = PrismaQuestionMapper.toPrisma(question)
+    const data = PrismaQuestionMapper.toPrisma(question);
 
     await this.prisma.question.update({
       where: {
-        id: data.id
+        id: data.id,
       },
       data,
-    })
+    });
   }
 
   async delete(question: Question): Promise<void> {
-    const data = PrismaQuestionMapper.toPrisma(question)
+    const data = PrismaQuestionMapper.toPrisma(question);
 
     await this.prisma.question.delete({
       where: {
-        id: data.id
+        id: data.id,
       },
-    })
+    });
   }
 }
