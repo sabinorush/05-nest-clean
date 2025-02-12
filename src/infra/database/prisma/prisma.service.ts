@@ -8,6 +8,7 @@ export class PrismaService
 {
   prisma = new PrismaClient();
   public client: PrismaClient;
+  static question: any;
 
   constructor() {
     super({

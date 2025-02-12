@@ -4,6 +4,7 @@
   ],
   "rules": {
     "no-useless-constructor": "off",
+    "no-unused-vars": "off",
     "no-self-assign": "off",
     "accessor-pairs": "off",
     "no-new": "off",
