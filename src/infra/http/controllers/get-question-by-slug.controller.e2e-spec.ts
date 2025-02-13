@@ -11,6 +11,7 @@ import { StudentFactory } from 'test/factories/make-students';
 
 describe('Get question by slug (E2E)', () => {
   let app: INestApplication;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let prisma: PrismaService;
   let studentFactory: StudentFactory;
   let questionFactory: QuestionFactory;

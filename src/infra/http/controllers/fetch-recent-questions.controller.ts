@@ -17,13 +17,11 @@ type PageQueryParamSchema = z.infer<typeof pageQueryParamSchema>;
 
 @Controller('/questions')
 export class FetchRecentQuestionsController {
-  constructor(
-    private fetchRecentQuestionsUseCase: FetchRecentQuestionsUseCase,
-  ) {}
+  constructor(private fetchRecentQuestions: FetchRecentQuestionsUseCase) {}
 
   @Get()
   async handle(@Query('page', queryValidationPipe) page: PageQueryParamSchema) {
-    const result = await this.fetchRecentQuestionsUseCase.execute({
+    const result = await this.fetchRecentQuestions.execute({
       page,
     });
 
