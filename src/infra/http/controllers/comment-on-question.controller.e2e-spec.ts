@@ -8,7 +8,7 @@ import request from 'supertest';
 import { QuestionFactory } from 'test/factories/make-question';
 import { StudentFactory } from 'test/factories/make-students';
 
-describe('Answer question (E2E)', () => {
+describe('Comment on question (E2E)', () => {
   let app: INestApplication;
   let prisma: PrismaService;
   let studentFactory: StudentFactory;
@@ -31,7 +31,7 @@ describe('Answer question (E2E)', () => {
     await app.init();
   });
 
-  test('[POST] /questions/:questionId/answers', async () => {
+  test('[POST] /questions/:id/:questionsId/comments', async () => {
     const user = await studentFactory.makePrismaStudent();
 
     const accessToken = jwt.sign({ sub: user.id.toString() });
@@ -43,20 +43,20 @@ describe('Answer question (E2E)', () => {
     const questionId = question.id.toString();
 
     const response = await request(app.getHttpServer())
-      .post(`/questions/${questionId}/answers`)
+      .post(`/questions/${questionId}/comments`)
       .set('Authorization', `Bearer ${accessToken}`)
       .send({
-        content: 'New answer',
+        content: 'New comment',
       });
 
     expect(response.statusCode).toBe(201);
 
-    const answerOnDatabase = await prisma.answer.findFirst({
+    const commentOnDatabase = await prisma.comment.findFirst({
       where: {
-        content: 'New answer',
+        content: 'New comment',
       },
     });
 
-    expect(answerOnDatabase).toBeTruthy();
+    expect(commentOnDatabase).toBeTruthy();
   });
 });
