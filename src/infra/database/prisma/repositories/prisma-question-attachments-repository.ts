@@ -23,6 +23,14 @@ export class PrismaQuestionAttachmentsRepository
     return questionAttachments.map(PrismaQuestionAttachmentMapper.toDomain);
   }
 
+  async createMany(attachments: QuestionAttachment[]): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  async deleteMany(attachments: QuestionAttachment[]): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
   async deleteManyByQuestionId(questionId: string): Promise<void> {
     await this.prisma.attachment.deleteMany({
       where: {
