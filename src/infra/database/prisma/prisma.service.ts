@@ -8,6 +8,7 @@ export class PrismaService
 {
   prisma = new PrismaClient();
   public client: PrismaClient;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static question: any;
 
   constructor() {

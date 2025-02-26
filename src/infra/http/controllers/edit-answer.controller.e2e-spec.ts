@@ -9,12 +9,12 @@ import { AnswerFactory } from 'test/factories/make-answer';
 import { QuestionFactory } from 'test/factories/make-question';
 import { StudentFactory } from 'test/factories/make-students';
 
-describe('Edir Answer (E2E)', () => {
+describe('Edit answer (E2E)', () => {
   let app: INestApplication;
   let prisma: PrismaService;
   let studentFactory: StudentFactory;
-  let answerFactory: AnswerFactory;
   let questionFactory: QuestionFactory;
+  let answerFactory: AnswerFactory;
   let jwt: JwtService;
 
   beforeAll(async () => {

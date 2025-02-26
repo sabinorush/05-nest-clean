@@ -8,8 +8,8 @@ POST {{baseUrl}}/accounts
 Content-Type: application/json
 
 {
-  "name": "Fulado de tal 5",
-  "email": "fulano5@detal.com",
+  "name": "Fulado de tal 6",
+  "email": "fulano7@detal.com",
   "password": "123456"
 }
 
@@ -20,8 +20,7 @@ POST {{baseUrl}}/sessions
 Content-Type: application/json
 
 {
-
-  "email": "fulano3@detal.com",
+  "email": "fulano7@detal.com",
   "password": "123456"
 }
 
