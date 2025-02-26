@@ -25,7 +25,7 @@ export class PrismaQuestionAttachmentsRepository
 
   async createMany(attachments: QuestionAttachment[]): Promise<void> {
     if (attachments.length === 0) {
-      /* empty */
+      return;
     }
 
     const data = PrismaQuestionAttachmentMapper.toPrismaUpdateMany(attachments);
@@ -35,7 +35,7 @@ export class PrismaQuestionAttachmentsRepository
 
   async deleteMany(attachments: QuestionAttachment[]): Promise<void> {
     if (attachments.length === 0) {
-      /* empty */
+      return;
     }
 
     const attachmentIds = attachments.map((attachment) => {

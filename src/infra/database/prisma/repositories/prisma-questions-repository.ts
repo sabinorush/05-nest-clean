@@ -10,7 +10,7 @@ import { QuestionAttachmentsRepository } from '@/domain/forum/application/reposi
 export class PrismaQuestionsRepository implements QuestionsRepository {
   constructor(
     private prisma: PrismaService,
-    private questionAttachmentRepository: QuestionAttachmentsRepository,
+    private questionAttachmentsRepository: QuestionAttachmentsRepository,
   ) {}
 
   async findById(id: string): Promise<Question | null> {
@@ -43,15 +43,14 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
 
   async findManyRecent({ page }: PaginationParams): Promise<Question[]> {
     const questions = await this.prisma.question.findMany({
-      take: 20,
-      skip: (page - 1) * 20,
       orderBy: {
         createdAt: 'desc',
       },
+      take: 20,
+      skip: (page - 1) * 20,
     });
-    return questions.map((question) => {
-      return PrismaQuestionMapper.toDomain(question);
-    });
+
+    return questions.map(PrismaQuestionMapper.toDomain);
   }
 
   async create(question: Question): Promise<void> {
@@ -61,7 +60,7 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
       data,
     });
 
-    await this.questionAttachmentRepository.createMany(
+    await this.questionAttachmentsRepository.createMany(
       question.attachments.getItems(),
     );
   }
@@ -72,15 +71,14 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
     await Promise.all([
       this.prisma.question.update({
         where: {
-          id: data.id,
+          id: question.id.toString(),
         },
         data,
       }),
-      this.questionAttachmentRepository.createMany(
+      this.questionAttachmentsRepository.createMany(
         question.attachments.getNewItems(),
       ),
-
-      this.questionAttachmentRepository.deleteMany(
+      this.questionAttachmentsRepository.deleteMany(
         question.attachments.getRemovedItems(),
       ),
     ]);

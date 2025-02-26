@@ -33,7 +33,7 @@ export class EditQuestionController {
     @Param('id') questionId: string,
   ) {
     const { title, content } = body;
-    const { sub: userId } = user;
+    const userId = user.sub;
 
     const result = await this.editQuestion.execute({
       title,
@@ -42,6 +42,7 @@ export class EditQuestionController {
       attachmentsIds: [],
       questionId,
     });
+
     if (result.isLeft()) {
       throw new BadRequestException();
     }

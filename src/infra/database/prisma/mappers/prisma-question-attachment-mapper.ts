@@ -5,7 +5,7 @@ import { QuestionAttachment } from '@/domain/forum/enterprise/entities/question-
 export class PrismaQuestionAttachmentMapper {
   static toDomain(raw: PrismaAttachment): QuestionAttachment {
     if (!raw.questionId) {
-      throw new Error('invalid attachment type');
+      throw new Error('Invalid attachment type.');
     }
 
     return QuestionAttachment.create(
@@ -21,7 +21,7 @@ export class PrismaQuestionAttachmentMapper {
     attachments: QuestionAttachment[],
   ): Prisma.AttachmentUpdateManyArgs {
     const attachmentIds = attachments.map((attachment) => {
-      return attachment.id.toString();
+      return attachment.attachmentId.toString();
     });
 
     return {
